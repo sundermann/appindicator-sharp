@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api parser_version="3">
+  <namespace name="AppIndicator3" library="appindicator3">
+    <enum name="IndicatorCategory" cname="AppIndicatorCategory" type="enum">
+      <member cname="APP_INDICATOR_CATEGORY_APPLICATION_STATUS" name="ApplicationStatus" value="0"/>
+      <member cname="APP_INDICATOR_CATEGORY_COMMUNICATIONS" name="Communications" value="1"/>
+      <member cname="APP_INDICATOR_CATEGORY_SYSTEM_SERVICES" name="SystemServices" value="2"/>
+      <member cname="APP_INDICATOR_CATEGORY_HARDWARE" name="Hardware" value="3"/>
+      <member cname="APP_INDICATOR_CATEGORY_OTHER" name="Other" value="4"/>
+    </enum>
+    <enum name="IndicatorStatus" cname="AppIndicatorStatus" type="enum">
+      <member cname="APP_INDICATOR_STATUS_PASSIVE" name="Passive" value="0"/>
+      <member cname="APP_INDICATOR_STATUS_ACTIVE" name="Active" value="1"/>
+      <member cname="APP_INDICATOR_STATUS_ATTENTION" name="Attention" value="2"/>
+    </enum>
+    <object name="Indicator" cname="AppIndicator" abstract="false" opaque="false" hidden="false" parent="GObject">
+      <class_struct cname="AppIndicatorClass">
+        <field cname="parent_class" access="public" writeable="false" readable="true" name="ParentClass" type="GObjectClass">
+          <warning>missing glib:type-name</warning>
+        </field>
+        <method signal_vm="new_icon"/>
+        <method signal_vm="new_attention_icon"/>
+        <method signal_vm="new_status"/>
+        <method signal_vm="new_icon_theme_path"/>
+        <method signal_vm="new_label"/>
+        <method signal_vm="connection_changed"/>
+        <method signal_vm="scroll_event"/>
+        <method vm="app_indicator_reserved_ats"/>
+        <method vm="fallback"/>
+        <method vm="unfallback"/>
+        <method vm="app_indicator_reserved_1"/>
+        <method vm="app_indicator_reserved_2"/>
+        <method vm="app_indicator_reserved_3"/>
+        <method vm="app_indicator_reserved_4"/>
+        <method vm="app_indicator_reserved_5"/>
+        <method vm="app_indicator_reserved_6"/>
+      </class_struct>
+      <virtual_method name="AppIndicatorReservedAts" cname="app_indicator_reserved_ats" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <virtual_method name="AppIndicatorReserved1" cname="app_indicator_reserved_1" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <virtual_method name="AppIndicatorReserved2" cname="app_indicator_reserved_2" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <virtual_method name="AppIndicatorReserved3" cname="app_indicator_reserved_3" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <virtual_method name="AppIndicatorReserved4" cname="app_indicator_reserved_4" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <virtual_method name="AppIndicatorReserved5" cname="app_indicator_reserved_5" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <virtual_method name="AppIndicatorReserved6" cname="app_indicator_reserved_6" shared="true">
+        <return-type type="void"/>
+      </virtual_method>
+      <method name="GetType" cname="app_indicator_get_type" shared="true">
+        <return-type type="GType"/>
+      </method>
+      <constructor cname="app_indicator_new">
+        <parameters>
+          <parameter name="id" type="const-gchar*"/>
+          <parameter name="icon_name" type="const-gchar*"/>
+          <parameter name="category" type="int"/>
+        </parameters>
+      </constructor>
+      <constructor cname="app_indicator_new_with_path">
+        <parameters>
+          <parameter name="id" type="const-gchar*"/>
+          <parameter name="icon_name" type="const-gchar*"/>
+          <parameter name="category" type="int"/>
+          <parameter name="icon_theme_path" type="const-gchar*"/>
+        </parameters>
+      </constructor>
+      <virtual_method name="Fallback" cname="fallback" hidden="true">
+        <return-type type="GtkStatusIcon*"/>
+        <parameters/>
+      </virtual_method>
+      <virtual_method name="Unfallback" cname="unfallback">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="status_icon" type="GtkStatusIcon*"/>
+        </parameters>
+      </virtual_method>
+      <method name="BuildMenuFromDesktop" cname="app_indicator_build_menu_from_desktop">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="desktop_file" type="const-gchar*"/>
+          <parameter name="desktop_profile" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="GetAttentionIcon" cname="app_indicator_get_attention_icon">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetAttentionIconDesc" cname="app_indicator_get_attention_icon_desc">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetCategory" cname="app_indicator_get_category">
+        <return-type type="int"/>
+        <parameters/>
+      </method>
+      <method name="GetIcon" cname="app_indicator_get_icon">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetIconDesc" cname="app_indicator_get_icon_desc">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetIconThemePath" cname="app_indicator_get_icon_theme_path">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetId" cname="app_indicator_get_id">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetLabel" cname="app_indicator_get_label">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetLabelGuide" cname="app_indicator_get_label_guide">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="GetMenu" cname="app_indicator_get_menu">
+        <return-type type="GtkMenu*"/>
+        <parameters/>
+      </method>
+      <method name="GetOrderingIndex" cname="app_indicator_get_ordering_index">
+        <return-type type="guint32"/>
+        <parameters/>
+      </method>
+      <method name="GetSecondaryActivateTarget" cname="app_indicator_get_secondary_activate_target">
+        <return-type type="GtkWidget*"/>
+        <parameters/>
+      </method>
+      <method name="GetStatus" cname="app_indicator_get_status">
+        <return-type type="int"/>
+        <parameters/>
+      </method>
+      <method name="GetTitle" cname="app_indicator_get_title">
+        <return-type type="const-gchar*"/>
+        <parameters/>
+      </method>
+      <method name="SetAttentionIcon" cname="app_indicator_set_attention_icon" deprecated="true">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="icon_name" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="SetAttentionIconFull" cname="app_indicator_set_attention_icon_full">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="icon_name" type="const-gchar*"/>
+          <parameter name="icon_desc" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="SetIcon" cname="app_indicator_set_icon" deprecated="true">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="icon_name" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="SetIconFull" cname="app_indicator_set_icon_full">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="icon_name" type="const-gchar*"/>
+          <parameter name="icon_desc" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="SetIconThemePath" cname="app_indicator_set_icon_theme_path">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="icon_theme_path" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="SetLabel" cname="app_indicator_set_label">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="label" type="const-gchar*"/>
+          <parameter name="guide" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <method name="SetMenu" cname="app_indicator_set_menu">
+        <return-type type="void"/>
+        <parameters>
+          <parameter allow-none="1" name="menu" type="GtkMenu*"/>
+        </parameters>
+      </method>
+      <method name="SetOrderingIndex" cname="app_indicator_set_ordering_index">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="ordering_index" type="guint32"/>
+        </parameters>
+      </method>
+      <method name="SetSecondaryActivateTarget" cname="app_indicator_set_secondary_activate_target">
+        <return-type type="void"/>
+        <parameters>
+          <parameter allow-none="1" name="menuitem" type="GtkWidget*"/>
+        </parameters>
+      </method>
+      <method name="SetStatus" cname="app_indicator_set_status">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="status" type="int"/>
+        </parameters>
+      </method>
+      <method name="SetTitle" cname="app_indicator_set_title">
+        <return-type type="void"/>
+        <parameters>
+          <parameter allow-none="1" name="title" type="const-gchar*"/>
+        </parameters>
+      </method>
+      <property name="AttentionIconDesc" cname="attention-icon-desc" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="AttentionIconName" cname="attention-icon-name" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="Category" cname="category" type="gchar*" readable="true" writeable="true" construct="false" construct-only="true"/>
+      <property name="Connected" cname="connected" type="gboolean" readable="true" writeable="false" construct="false" construct-only="false"/>
+      <property name="IconDesc" cname="icon-desc" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="IconName" cname="icon-name" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="IconThemePath" cname="icon-theme-path" type="gchar*" readable="true" writeable="true" construct="true" construct-only="false"/>
+      <property name="Id" cname="id" type="gchar*" readable="true" writeable="true" construct="false" construct-only="true"/>
+      <property name="Label" cname="label" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="LabelGuide" cname="label-guide" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="OrderingIndex" cname="ordering-index" type="guint" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="Status" cname="status" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <property name="Title" cname="title" type="gchar*" readable="true" writeable="true" construct="false" construct-only="false"/>
+      <field cname="parent" access="public" writeable="false" readable="true" name="Parent" type="GObject*"/>
+      <field cname="priv" access="public" writeable="false" readable="true" name="Priv" type="AppIndicatorPrivate*">
+        <warning>missing glib:type-name</warning>
+      </field>
+      <signal name="ConnectionChanged" cname="connection-changed" when="last" field_name="connection_changed">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="arg1" type="gboolean"/>
+        </parameters>
+      </signal>
+      <signal name="NewAttentionIcon" cname="new-attention-icon" when="last" field_name="new_attention_icon">
+        <return-type type="void"/>
+        <parameters/>
+      </signal>
+      <signal name="NewIcon" cname="new-icon" when="last" field_name="new_icon">
+        <return-type type="void"/>
+        <parameters/>
+      </signal>
+      <signal name="NewIconThemePath" cname="new-icon-theme-path" when="last" field_name="new_icon_theme_path">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="_object" type="const-gchar*"/>
+        </parameters>
+      </signal>
+      <signal name="NewLabel" cname="new-label" when="last" field_name="new_label">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="_object" type="const-gchar*"/>
+          <parameter name="p0" type="const-gchar*"/>
+        </parameters>
+      </signal>
+      <signal name="NewStatus" cname="new-status" when="last" field_name="new_status">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="arg1" type="const-gchar*"/>
+        </parameters>
+      </signal>
+      <signal name="ScrollEvent" cname="scroll-event" when="last" field_name="scroll_event">
+        <return-type type="void"/>
+        <parameters>
+          <parameter name="arg1" type="gint"/>
+          <parameter name="arg2" type="Gdk.ScrollDirection"/>
+        </parameters>
+      </signal>
+    </object>
+    <struct name="IndicatorPrivate" cname="AppIndicatorPrivate" opaque="true" hidden="true"/>
+    <object name="Global" cname="AppIndicator3Global" opaque="true"/>
+    <object name="Constants" cname="AppIndicator3Constants" opaque="true">
+      <constant value="connection-changed" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_CONNECTION_CHANGED"/>
+      <constant value="new-attention-icon" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_NEW_ATTENTION_ICON"/>
+      <constant value="new-icon" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_NEW_ICON"/>
+      <constant value="new-icon-theme-path" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_NEW_ICON_THEME_PATH"/>
+      <constant value="new-label" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_NEW_LABEL"/>
+      <constant value="new-status" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_NEW_STATUS"/>
+      <constant value="scroll-event" ctype="gchar*" gtype="gchar*" name="INDICATOR_SIGNAL_SCROLL_EVENT"/>
+    </object>
+  </namespace>
+</api>
