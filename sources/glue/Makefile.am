@@ -15,4 +15,6 @@ libappindicator3sharpglue.dll: $(libappindicator3sharpglue_12_10_0_la_OBJECTS) l
 
 CLEANFILES = lib*.a lib*.dll
 
+DISTCLEANFILES = $(nodist_libappindicator3sharpglue_12_10_0_la_SOURCES)
+
 EXTRA_DIST =
