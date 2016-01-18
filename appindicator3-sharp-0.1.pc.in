@@ -1,9 +1,12 @@
 prefix=@prefix@
 exec_prefix=${prefix}
 libdir=@libdir@
+pkglibdir=${exec_prefix}/lib/mono/@ASSEMBLY_NAME@
+gapidir=@GAPIXMLDIR@
 
 Name: @ASSEMBLY_TITLE@
 Description: @ASSEMBLY_DESCRIPTION@
 Version: @VERSION@
 Requires: 
-Libs: -r:${libdir}/mono/@ASSEMBLY_NAME@/@ASSEMBLY_NAME@.dll
+Libs: -r:${pkglibdir}/@ASSEMBLY_NAME@.dll
+Cflags: -I:${gapidir}/appindicator3-sharp-api.xml
